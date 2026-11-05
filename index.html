@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frendo — tous vos réseaux, un seul ami</title>
+<meta name="description" content="Publiez sur Facebook, Instagram, TikTok, YouTube, Threads, Bluesky et Google en une seule fois. 20 CHF par mois, 60 jours d'essai sans carte bancaire.">
+<meta property="og:title" content="Frendo — tous vos réseaux, un seul ami">
+<meta property="og:description" content="Publiez sur Facebook, Instagram, TikTok, YouTube, Threads, Bluesky et Google en une seule fois. 20 CHF par mois, 60 jours d'essai sans carte bancaire.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#15171B; --ink:#E7E9ED; --muted:#8A9099; --border:#3A3F48;
+    --surface:#1E2127; --title:#AAB1BB; --grid:rgba(255,255,255,.04);
+    --accent:#4ECDC4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  body{
+    background:var(--paper);
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:26px 26px;background-position:-1px -1px;
+    color:var(--ink);min-height:100vh;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .serif{font-family:'Space Grotesk',Georgia,serif;letter-spacing:.01em;}
+  .wrap{width:100%;max-width:760px;margin:0 auto;padding:0 20px;}
+  .logo{width:104px;height:71px;background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDE2IDY5MCIgd2lkdGg9IjEwMTYiIGhlaWdodD0iNjkwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEZFOUNDIi8+PHN0b3Agb2Zmc2V0PSIwLjM1IiBzdG9wLWNvbG9yPSIjOEFFODk0Ii8+PHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjRDZENTY2Ii8+PHN0b3Agb2Zmc2V0PSIwLjc1IiBzdG9wLWNvbG9yPSIjRjlCRjUxIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRkU3QjQ0Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+Cgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNCwtMTU4KSI+PHJlY3QgeD0iNCIgICB5PSIzODQiIHdpZHRoPSIxNjUiIGhlaWdodD0iMjU4IiByeD0iNzQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iODU1IiB5PSIzODQiIHdpZHRoPSIxNjUiIGhlaWdodD0iMjU4IiByeD0iNzQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iOTAiICB5PSIxNTgiIHdpZHRoPSI4NDQiIGhlaWdodD0iNjkwIiByeD0iMjU1IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjE2MyIgeT0iMjQzIiB3aWR0aD0iNjk2IiBoZWlnaHQ9IjUxNiIgcng9IjE3NSIgZmlsbD0iIzAyMUM0MCIvPgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iNDQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CjxwYXRoIGQ9Ik0gMjQ2IDQ5NyBBIDk1IDgyIDAgMCAxIDQyNCA0OTciLz4KPHBhdGggZD0iTSA2MDAgNDk3IEEgOTUgODIgMCAwIDEgNzc4IDQ5NyIvPgo8cGF0aCBkPSJNIDM5MiA1OTIgQSAxMzIgMTAwIDAgMCAwIDYzMiA1OTIiLz4KPC9nPjwvZz4KPC9zdmc+Cg==");background-size:contain;background-repeat:no-repeat;background-position:center;}
+  a{color:var(--ink);}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;gap:14px;}
+  header .nom{font-size:21px;font-weight:600;color:var(--ink);}
+  header nav{margin-left:auto;display:flex;gap:18px;font-size:14px;}
+  header nav a{color:var(--muted);text-decoration:none;}
+  header nav a:hover{color:var(--ink);}
+  .btn{display:inline-block;background:var(--ink);color:#15171B;padding:13px 26px;border-radius:999px;
+       font-weight:600;font-size:15px;text-decoration:none;transition:transform .15s ease;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-clair{background:transparent;color:var(--ink);border:1.5px solid var(--border);}
+  h1{font-size:clamp(30px,6vw,46px);line-height:1.15;font-weight:600;letter-spacing:-.01em;}
+  h2{font-size:clamp(21px,3.6vw,27px);font-weight:600;margin-bottom:14px;letter-spacing:-.005em;}
+  h3{font-size:16px;font-weight:600;margin-bottom:5px;}
+  p{color:var(--ink);}
+  .muted{color:var(--muted);}
+  section{padding:46px 0;border-top:1px solid var(--border);}
+  section:first-of-type{border-top:none;}
+  .grille{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin-top:26px;}
+  .carte{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;}
+  .carte p{font-size:14px;color:var(--muted);}
+  .prix{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px;text-align:center;}
+  .prix .gros{font-size:54px;font-weight:600;letter-spacing:-.02em;line-height:1;}
+  .prix .gros span{font-size:19px;font-weight:500;color:var(--muted);}
+  table{width:100%;border-collapse:collapse;margin-top:22px;font-size:14.5px;}
+  td{padding:9px 0;border-bottom:1px solid var(--border);}
+  td:last-child{text-align:right;font-weight:600;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  .reseaux{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
+  .puce{border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:14px;color:var(--muted);}
+  footer{padding:36px 0 56px;border-top:1px solid var(--border);margin-top:26px;font-size:13.5px;color:var(--muted);}
+  footer a{color:var(--muted);}
+  .doc h2{margin-top:34px;}
+  .doc h2:first-of-type{margin-top:0;}
+  .doc p,.doc li{font-size:15px;color:var(--ink);margin-bottom:12px;}
+  .doc ul{padding-left:20px;}
+  .doc .maj{font-size:13.5px;color:var(--muted);margin-bottom:28px;}
+  @media (max-width:520px){ header nav{display:none;} }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="logo"></div>
+  <div class="nom serif">Frendo</div>
+  <nav>
+    <a href="/">Accueil</a>
+    <a href="/conditions.html">Conditions</a>
+    <a href="/confidentialite.html">Confidentialité</a>
+  </nav>
+</div></header>
+
+<section><div class="wrap" style="text-align:center;padding-top:16px;">
+  <h1 class="serif">Vos réseaux sociaux,<br>en une seule fois.</h1>
+  <p style="font-size:18px;color:var(--muted);max-width:560px;margin:18px auto 0;">
+    Une photo, un texte, un bouton. Frendo publie sur Facebook, Instagram, TikTok, YouTube,
+    Threads, Bluesky et votre fiche Google — et vous rend le temps que ça prenait.
+  </p>
+  <p style="margin-top:30px;">
+    <a class="btn" href="https://poster-nine-tawny.vercel.app">Essayer 60 jours</a>
+  </p>
+  <p class="muted" style="font-size:13.5px;margin-top:12px;">Sans carte bancaire. Sans engagement.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Ce que Frendo fait à votre place</h2>
+  <div class="grille">
+    <div class="carte">
+      <h3>Publier partout d'un coup</h3>
+      <p>Photo, vidéo, carrousel. Stories, Reels, fil d'actualité. Chaque réseau reçoit le bon format,
+         sans que vous ayez à y penser.</p>
+    </div>
+    <div class="carte">
+      <h3>Programmer et rediffuser</h3>
+      <p>Une Story qui repasse tous les deux jours pendant une semaine, ça se règle une fois.
+         Frendo s'en occupe ensuite, même quand l'application est fermée.</p>
+    </div>
+    <div class="carte">
+      <h3>Lire tous vos messages</h3>
+      <p>Messenger, messages privés Instagram, commentaires, avis Google : une seule boîte,
+         et vous répondez depuis le même écran.</p>
+    </div>
+    <div class="carte">
+      <h3>Modérer sans ouvrir dix onglets</h3>
+      <p>Masquer un commentaire déplacé, supprimer, bloquer quelqu'un d'insultant.
+         En deux touches, sur Facebook comme sur Instagram.</p>
+    </div>
+    <div class="carte">
+      <h3>Vos horaires de fermeture</h3>
+      <p>Un jour férié, une semaine de vacances : vous cochez les dates et votre fiche Google
+         est à jour partout, en un seul geste.</p>
+    </div>
+    <div class="carte">
+      <h3>Vérifier que c'est bien parti</h3>
+      <p>Dix minutes après chaque publication, Frendo relit ses propres envois et vous dit
+         ce qui est réellement en ligne. Pas de surprise le lendemain.</p>
+    </div>
+  </div>
+  <div class="reseaux">
+    <span class="puce">Facebook</span><span class="puce">Instagram</span><span class="puce">TikTok</span>
+    <span class="puce">YouTube</span><span class="puce">Threads</span><span class="puce">Bluesky</span>
+    <span class="puce">Fiche Google</span>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Un prix, pas une grille de tarifs</h2>
+  <div class="prix">
+    <div class="gros">20 <span>CHF / mois</span></div>
+    <p style="margin-top:14px;color:var(--muted);">Jusqu'à 4 comptes par réseau. Tout est inclus.</p>
+    <p style="margin-top:22px;"><a class="btn" href="https://poster-nine-tawny.vercel.app">Commencer l'essai</a></p>
+    <p class="muted" style="font-size:13.5px;margin-top:12px;">
+      60 jours offerts · aucune carte bancaire demandée · résiliable à tout moment
+    </p>
+  </div>
+  <table>
+    <tr><td>Jusqu'à 4 comptes par réseau</td><td>20 CHF / mois</td></tr>
+    <tr><td>Jusqu'à 8 comptes par réseau</td><td>38 CHF / mois</td></tr>
+    <tr><td>Jusqu'à 12 comptes par réseau</td><td>54 CHF / mois</td></tr>
+    <tr><td>Au-delà</td><td><a href="mailto:contact@frendo.ch" style="color:var(--ink);">Écrivez-nous</a></td></tr>
+  </table>
+  <p class="muted" style="font-size:14px;margin-top:18px;">
+    Un commerce qui a une page Facebook, un Instagram, un TikTok, une chaîne YouTube et une fiche Google
+    reste très largement dans la première ligne. Rien n'est facturé par publication, ni par utilisateur.
+  </p>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Fait par un commerçant, pour des commerçants</h2>
+  <p style="color:var(--muted);">
+    Frendo est né derrière un comptoir, à Genève. Trente ans de commerce de détail, deux magasins,
+    un restaurant — et la même corvée tous les soirs : republier la même chose sur six réseaux.
+    L'outil a d'abord servi à nous. Il sert maintenant à d'autres.
+  </p>
+  <p style="color:var(--muted);margin-top:14px;">
+    Société suisse, conçu en Suisse, support en français. Pas de centre d'appel, pas de robot :
+    vous écrivez, quelqu'un lit.
+  </p>
+  <p style="margin-top:24px;"><a class="btn btn-clair" href="mailto:contact@frendo.ch">Nous écrire</a></p>
+</div></section>
+
+<footer><div class="wrap">
+  <p><strong style="color:var(--ink);">Frendo</strong> — un service de FizzEat Sàrl, Rue de Fribourg 3, 1201 Genève, Suisse.</p>
+  <p style="margin-top:8px;">
+    <a href="/conditions.html">Conditions d'utilisation</a> ·
+    <a href="/confidentialite.html">Politique de confidentialité</a> ·
+    <a href="mailto:contact@frendo.ch">contact@frendo.ch</a>
+  </p>
+</div></footer>
+</body>
+</html>
