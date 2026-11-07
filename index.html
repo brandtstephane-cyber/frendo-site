@@ -66,6 +66,14 @@
   .doc p,.doc li{font-size:15px;color:var(--ink);margin-bottom:12px;}
   .doc ul{padding-left:20px;}
   .doc .maj{font-size:13.5px;color:var(--muted);margin-bottom:28px;}
+  .inscr{display:flex;gap:8px;max-width:420px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+  .inscr input{flex:1;min-width:220px;padding:13px 16px;border-radius:999px;border:1px solid var(--border);
+    background:var(--surface);color:var(--ink);font-family:inherit;font-size:15px;}
+  .inscr input::placeholder{color:var(--muted);}
+  .inscr input:focus{outline:none;border-color:var(--ink);}
+  .inscr button{border:none;cursor:pointer;font-family:inherit;}
+  .piege{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+  .reponse{font-size:14px;margin-top:14px;min-height:20px;}
   @media (max-width:520px){ header .wrap{flex-wrap:wrap;} header nav{margin-left:0;width:100%;gap:14px;font-size:13px;padding-top:4px;} }
 </style>
 </head>
@@ -97,9 +105,12 @@
     Fini de republier la même chose page après page, format après format :
     vous récupérez vos soirées pour votre commerce.
   </p>
-  <p style="margin-top:30px;">
-    <a class="btn" href="mailto:contact@frendo.ch?subject=Pr%C3%A9venez-moi%20de%20l%27ouverture%20de%20Frendo&body=Bonjour%2C%0A%0AJe%20souhaite%20%C3%AAtre%20pr%C3%A9venu%20quand%20Frendo%20ouvrira.%0A%0AMon%20commerce%20%3A%20%0AMes%20r%C3%A9seaux%20%3A%20%0A%0AMerci%20%21">🔔 Être prévenu de l'ouverture</a>
-  </p>
+  <form id="inscription" class="inscr" style="margin-top:30px;" novalidate>
+    <input type="email" id="inscr-email" name="email" placeholder="votre@adresse.ch" autocomplete="email" required>
+    <input type="text" class="piege" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit" class="btn" id="inscr-btn">🔔 Réserver ma place</button>
+  </form>
+  <p class="reponse muted" id="inscr-msg" role="status" aria-live="polite"></p>
   <p class="muted" style="font-size:13.5px;margin-top:12px;">
     60 jours d'essai gratuits au lancement · sans carte bancaire · sans engagement
   </p>
@@ -168,7 +179,7 @@
   <div class="prix">
     <div class="gros">20 <span>CHF / mois</span></div>
     <p style="margin-top:14px;color:var(--muted);">Jusqu'à 4 comptes par réseau. Tout est inclus.</p>
-    <p style="margin-top:22px;"><a class="btn" href="mailto:contact@frendo.ch?subject=Pr%C3%A9venez-moi%20de%20l%27ouverture%20de%20Frendo&body=Bonjour%2C%0A%0AJe%20souhaite%20%C3%AAtre%20pr%C3%A9venu%20quand%20Frendo%20ouvrira.%0A%0AMon%20commerce%20%3A%20%0AMes%20r%C3%A9seaux%20%3A%20%0A%0AMerci%20%21">Être prévenu de l'ouverture</a></p>
+    <p style="margin-top:22px;"><a class="btn" href="#inscription">Être prévenu de l'ouverture</a></p>
     <p class="muted" style="font-size:13.5px;margin-top:12px;">
       60 jours offerts au lancement · aucune carte bancaire demandée · résiliable à tout moment
     </p>
@@ -237,5 +248,56 @@
     <a href="mailto:contact@frendo.ch">contact@frendo.ch</a>
   </p>
 </div></footer>
+<script>
+/* Le formulaire d'attente. Trois etats et pas un de plus : au repos, en
+   cours, repondu. Le bouton se desactive pendant l'envoi, sinon un visiteur
+   impatient clique trois fois et s'inscrit trois fois. */
+(function () {
+  var f = document.getElementById("inscription");
+  if (!f) return;
+  var champ = document.getElementById("inscr-email");
+  var bouton = document.getElementById("inscr-btn");
+  var msg = document.getElementById("inscr-msg");
+  var fini = false;
+
+  f.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (fini) return;
+    var email = (champ.value || "").trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      msg.textContent = "Vérifiez votre adresse : il manque quelque chose.";
+      champ.focus();
+      return;
+    }
+    var libelle = bouton.textContent;
+    bouton.disabled = true;
+    bouton.textContent = "Envoi…";
+    msg.textContent = "";
+    fetch("/api/liste", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email, site: f.site.value || "" }),
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (d) {
+        if (d && d.ok) {
+          fini = true;
+          f.style.display = "none";
+          msg.style.color = "var(--ink)";
+          msg.textContent = "C'est noté. Vous recevez un message de confirmation dans un instant.";
+        } else {
+          bouton.disabled = false;
+          bouton.textContent = libelle;
+          msg.textContent = (d && d.error) || "L'envoi a échoué. Écrivez-nous à contact@frendo.ch.";
+        }
+      })
+      .catch(function () {
+        bouton.disabled = false;
+        bouton.textContent = libelle;
+        msg.textContent = "Connexion impossible. Écrivez-nous à contact@frendo.ch.";
+      });
+  });
+})();
+</script>
 </body>
 </html>
