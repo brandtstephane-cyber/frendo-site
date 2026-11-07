@@ -65,7 +65,7 @@
   .doc p,.doc li{font-size:15px;color:var(--ink);margin-bottom:12px;}
   .doc ul{padding-left:20px;}
   .doc .maj{font-size:13.5px;color:var(--muted);margin-bottom:28px;}
-  @media (max-width:520px){ header nav{display:none;} }
+  @media (max-width:520px){ header .wrap{flex-wrap:wrap;} header nav{margin-left:0;width:100%;gap:14px;font-size:13px;padding-top:4px;} }
 </style>
 </head>
 <body>
@@ -74,6 +74,7 @@
   <div class="nom serif">Frendo</div>
   <nav>
     <a href="/">Accueil</a>
+    <a href="/fonctions.html">Fonctions</a>
     <a href="/conditions.html">Conditions</a>
     <a href="/confidentialite.html">Confidentialité</a>
   </nav>
@@ -86,16 +87,23 @@
   </div>
 </div>
 <section><div class="wrap" style="text-align:center;padding-top:16px;">
-  <h1 class="serif">Vos réseaux sociaux,<br>en une seule fois.</h1>
+  <h1 class="serif">Tous vos réseaux,<br>en un seul clic.</h1>
   <p style="font-size:18px;color:var(--muted);max-width:560px;margin:18px auto 0;">
-    Une photo, un texte, un bouton. Frendo publie sur Facebook, Instagram, TikTok, YouTube,
-    Threads, Bluesky et votre fiche Google — et vous rend le temps que ça prenait.
+    Une photo, une vidéo, un texte. Un clic. Frendo publie en même temps sur Facebook, Instagram,
+    TikTok, YouTube, Threads, Bluesky et votre fiche Google — fil, Story et Reel compris.
+  </p>
+  <p style="font-size:16px;color:var(--muted);max-width:520px;margin:16px auto 0;">
+    Fini de republier la même chose page après page, format après format :
+    vous récupérez vos soirées pour votre commerce.
   </p>
   <p style="margin-top:30px;">
-    <a class="btn" href="mailto:contact@frendo.ch?subject=Pr%C3%A9venez-moi%20de%20l%27ouverture%20de%20Frendo&body=Bonjour%2C%0A%0AJe%20souhaite%20%C3%AAtre%20pr%C3%A9venu%20quand%20Frendo%20ouvrira.%0A%0AMon%20commerce%20%3A%20%0AMes%20r%C3%A9seaux%20%3A%20%0A%0AMerci%20%21">Être prévenu de l'ouverture</a>
+    <a class="btn" href="mailto:contact@frendo.ch?subject=Pr%C3%A9venez-moi%20de%20l%27ouverture%20de%20Frendo&body=Bonjour%2C%0A%0AJe%20souhaite%20%C3%AAtre%20pr%C3%A9venu%20quand%20Frendo%20ouvrira.%0A%0AMon%20commerce%20%3A%20%0AMes%20r%C3%A9seaux%20%3A%20%0A%0AMerci%20%21">🔔 Être prévenu de l'ouverture</a>
   </p>
   <p class="muted" style="font-size:13.5px;margin-top:12px;">
-    60 jours d'essai au lancement · sans carte bancaire · sans engagement
+    60 jours d'essai gratuits au lancement · sans carte bancaire · sans engagement
+  </p>
+  <p class="muted" style="font-size:13.5px;margin-top:16px;">
+    🇨🇭 Conçu et développé à Genève · support en français, par la personne qui l'a écrit
   </p>
 </div></section>
 
@@ -113,9 +121,9 @@
          Frendo s'en occupe ensuite, même quand l'application est fermée.</p>
     </div>
     <div class="carte">
-      <h3>Lire tous vos messages</h3>
-      <p>Messenger, messages privés Instagram, commentaires, avis Google : une seule boîte,
-         et vous répondez depuis le même écran.</p>
+      <h3>Répondre sans sortir de l'application</h3>
+      <p>Messenger, messages privés Instagram, commentaires — et tous vos avis Google,
+         auxquels vous répondez directement depuis Frendo, sans rouvrir de compte Google.</p>
     </div>
     <div class="carte">
       <h3>Modérer sans ouvrir dix onglets</h3>
@@ -128,11 +136,17 @@
          est à jour partout, en un seul geste.</p>
     </div>
     <div class="carte">
+      <h3>Des photos, un Reel</h3>
+      <p>Deux à dix photos deviennent une vidéo verticale — fond flouté, fondus, musique.
+         Vous publiez un Reel sans avoir jamais ouvert une application de montage.</p>
+    </div>
+    <div class="carte">
       <h3>Vérifier que c'est bien parti</h3>
       <p>Dix minutes après chaque publication, Frendo relit ses propres envois et vous dit
          ce qui est réellement en ligne. Pas de surprise le lendemain.</p>
     </div>
   </div>
+  <p style="margin-top:24px;"><a href="/fonctions.html" style="color:var(--accent);text-decoration:none;font-weight:600;font-size:15px;">Tout ce que fait Frendo, en détail &rarr;</a></p>
   <div class="reseaux">
     <span class="puce">Facebook</span><span class="puce">Instagram</span><span class="puce">TikTok</span>
     <span class="puce">YouTube</span><span class="puce">Threads</span><span class="puce">Bluesky</span>
@@ -141,7 +155,10 @@
 </div></section>
 
 <section><div class="wrap">
-  <h2 class="serif">Un prix, pas une grille de tarifs</h2>
+  <h2 class="serif">Fait en Suisse, au prix d'ailleurs</h2>
+  <p class="muted" style="font-size:14.5px;margin:-6px 0 4px;">
+    Un prix, pas une grille de tarifs.
+  </p>
   <div class="prix">
     <div class="gros">20 <span>CHF / mois</span></div>
     <p style="margin-top:14px;color:var(--muted);">Jusqu'à 4 comptes par réseau. Tout est inclus.</p>
@@ -177,6 +194,10 @@
     vous écrivez, quelqu'un lit.
   </p>
   <p style="margin-top:24px;"><a class="btn btn-clair" href="mailto:contact@frendo.ch">Nous écrire</a></p>
+</div></section>
+
+<section><div class="wrap" style="text-align:center;padding:40px 0 10px;border:none;">
+  <p class="serif" style="font-size:clamp(20px,4vw,26px);color:var(--ink);">Tous vos réseaux. Un seul ami.</p>
 </div></section>
 
 <footer><div class="wrap">

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frendo — tout ce que fait l’application</title>
+<meta name="description" content="Le détail de ce que fait Frendo : publier partout, programmer, rediffuser, transformer des photos en vidéo, répondre aux messages, tenir sa fiche Google à jour.">
+<meta property="og:title" content="Frendo — tout ce que fait l’application">
+<meta property="og:description" content="Le détail, fonction par fonction — et ce que Frendo ne fait pas encore.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#15171B; --ink:#E7E9ED; --muted:#8A9099; --border:#3A3F48;
+    --surface:#1E2127; --title:#AAB1BB; --grid:rgba(255,255,255,.04);
+    --accent:#4ECDC4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  body{
+    background:var(--paper);
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:26px 26px;background-position:-1px -1px;
+    color:var(--ink);min-height:100vh;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .serif{font-family:'Space Grotesk',Georgia,serif;letter-spacing:.01em;}
+  .wrap{width:100%;max-width:760px;margin:0 auto;padding:0 20px;}
+  .logo{width:104px;height:71px;background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDE2IDY5MCIgd2lkdGg9IjEwMTYiIGhlaWdodD0iNjkwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEZFOUNDIi8+PHN0b3Agb2Zmc2V0PSIwLjM1IiBzdG9wLWNvbG9yPSIjOEFFODk0Ii8+PHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjRDZENTY2Ii8+PHN0b3Agb2Zmc2V0PSIwLjc1IiBzdG9wLWNvbG9yPSIjRjlCRjUxIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRkU3QjQ0Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+Cgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNCwtMTU4KSI+PHJlY3QgeD0iNCIgICB5PSIzODQiIHdpZHRoPSIxNjUiIGhlaWdodD0iMjU4IiByeD0iNzQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iODU1IiB5PSIzODQiIHdpZHRoPSIxNjUiIGhlaWdodD0iMjU4IiByeD0iNzQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iOTAiICB5PSIxNTgiIHdpZHRoPSI4NDQiIGhlaWdodD0iNjkwIiByeD0iMjU1IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjE2MyIgeT0iMjQzIiB3aWR0aD0iNjk2IiBoZWlnaHQ9IjUxNiIgcng9IjE3NSIgZmlsbD0iIzAyMUM0MCIvPgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iNDQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CjxwYXRoIGQ9Ik0gMjQ2IDQ5NyBBIDk1IDgyIDAgMCAxIDQyNCA0OTciLz4KPHBhdGggZD0iTSA2MDAgNDk3IEEgOTUgODIgMCAwIDEgNzc4IDQ5NyIvPgo8cGF0aCBkPSJNIDM5MiA1OTIgQSAxMzIgMTAwIDAgMCAwIDYzMiA1OTIiLz4KPC9nPjwvZz4KPC9zdmc+Cg==");background-size:contain;background-repeat:no-repeat;background-position:center;}
+  a{color:var(--ink);}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;gap:14px;}
+  header .nom{font-size:21px;font-weight:600;color:var(--ink);}
+  header nav{margin-left:auto;display:flex;gap:18px;font-size:14px;}
+  header nav a{color:var(--muted);text-decoration:none;}
+  header nav a:hover{color:var(--ink);}
+  .btn{display:inline-block;background:var(--ink);color:#15171B;padding:13px 26px;border-radius:999px;
+       font-weight:600;font-size:15px;text-decoration:none;transition:transform .15s ease;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-clair{background:transparent;color:var(--ink);border:1.5px solid var(--border);}
+  h1{font-size:clamp(30px,6vw,46px);line-height:1.15;font-weight:600;letter-spacing:-.01em;}
+  h2{font-size:clamp(21px,3.6vw,27px);font-weight:600;margin-bottom:14px;letter-spacing:-.005em;}
+  h3{font-size:16px;font-weight:600;margin-bottom:5px;}
+  p{color:var(--ink);}
+  .muted{color:var(--muted);}
+  section{padding:46px 0;border-top:1px solid var(--border);}
+  section:first-of-type{border-top:none;}
+  .grille{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin-top:26px;}
+  .carte{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;}
+  .carte p{font-size:14px;color:var(--muted);}
+  .prix{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px;text-align:center;}
+  .prix .gros{font-size:54px;font-weight:600;letter-spacing:-.02em;line-height:1;}
+  .prix .gros span{font-size:19px;font-weight:500;color:var(--muted);}
+  table{width:100%;border-collapse:collapse;margin-top:22px;font-size:14.5px;}
+  td{padding:9px 0;border-bottom:1px solid var(--border);}
+  td:last-child{text-align:right;font-weight:600;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  .reseaux{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
+  .puce{border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:14px;color:var(--muted);}
+  footer{padding:36px 0 56px;border-top:1px solid var(--border);margin-top:26px;font-size:13.5px;color:var(--muted);}
+  footer a{color:var(--muted);}
+  .doc h2{margin-top:34px;}
+  .doc h2:first-of-type{margin-top:0;}
+  .doc p,.doc li{font-size:15px;color:var(--ink);margin-bottom:12px;}
+  .doc ul{padding-left:20px;}
+  .doc .maj{font-size:13.5px;color:var(--muted);margin-bottom:28px;}
+  @media (max-width:520px){ header .wrap{flex-wrap:wrap;} header nav{margin-left:0;width:100%;gap:14px;font-size:13px;padding-top:4px;} }
+  .bloc{margin-top:30px;}
+  .bloc h3{font-size:15.5px;color:var(--ink);margin-top:20px;}
+  .bloc p{font-size:14.5px;color:var(--muted);margin-top:4px;}
+  .fil{border-left:2px solid var(--border);padding-left:18px;}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="logo"></div>
+  <div class="nom serif">Frendo</div>
+  <nav>
+    <a href="/">Accueil</a>
+    <a href="/fonctions.html">Fonctions</a>
+    <a href="/conditions.html">Conditions</a>
+    <a href="/confidentialite.html">Confidentialité</a>
+  </nav>
+</div></header>
+
+<section><div class="wrap" style="padding-top:10px;">
+  <h1 class="serif" style="font-size:clamp(26px,5vw,38px);">Tout ce que fait Frendo</h1>
+  <p class="muted" style="font-size:16.5px;margin-top:14px;max-width:580px;">
+    Le détail, fonction par fonction. Et à la fin, ce que Frendo ne fait pas encore —
+    parce qu'un outil qui ne reconnaît aucune limite n'est pas crédible.
+  </p>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Publier</h2>
+  <div class="bloc fil">
+    <h3>Un envoi, tous les réseaux</h3>
+    <p>Vous écrivez une fois, vous cochez les destinations, vous envoyez. Facebook, Instagram,
+       TikTok, YouTube, Threads, Bluesky, fiche Google.</p>
+
+    <h3>Le bon format, sans y penser</h3>
+    <p>Story, Reel, fil d'actualité : chaque réseau a ses règles de taille, de durée et de format.
+       Frendo les applique à votre place et vous prévient avant l'envoi si quelque chose ne passera pas.</p>
+
+    <h3>Des photos transformées en vidéo</h3>
+    <p>Choisissez deux à dix photos et Frendo les assemble en vidéo verticale : fond flouté,
+       léger zoom, fondus enchaînés, musique au choix. Vous publiez un Reel sans avoir jamais
+       ouvert une application de montage. C'est fabriqué sur votre appareil, rien ne part ailleurs.</p>
+
+    <h3>Le carrousel</h3>
+    <p>Les mêmes photos partent aussi en carrousel glissable sur Instagram, pour qui préfère
+       la pile d'images à la vidéo.</p>
+
+    <h3>Votre signature et vos hashtags</h3>
+    <p>Écrits une fois par page, ajoutés à chaque publication. Vous ne les retapez plus jamais.</p>
+
+    <h3>Le commentaire automatique</h3>
+    <p>Adresse, horaires, lien : Frendo les poste en commentaire juste après la publication.
+       La légende reste lisible, et sur Instagram le lien devient au moins copiable.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Programmer</h2>
+  <div class="bloc fil">
+    <h3>Le plan de bataille</h3>
+    <p>Préparez vos publications à l'avance, pour la semaine ou pour le mois.</p>
+
+    <h3>La rediffusion</h3>
+    <p>Une Story vit vingt-quatre heures : la plupart de vos clients ne la verront jamais.
+       Réglez-la pour repasser tous les deux jours pendant une semaine, et n'y pensez plus.</p>
+
+    <h3>Même application fermée</h3>
+    <p>C'est un robot qui publie, sur le serveur. Votre téléphone peut être éteint.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Répondre</h2>
+  <div class="bloc fil">
+    <h3>Une seule boîte</h3>
+    <p>Messenger, messages privés Instagram, commentaires sous vos publications, avis Google :
+       tout arrive au même endroit, et vous répondez depuis le même écran.</p>
+
+    <h3>Les avis Google : vous répondez depuis Frendo</h3>
+    <p>Tous vos avis arrivent dans l'application, et votre réponse part directement de là.
+       Pas de compte Google à rouvrir, pas de mot de passe à retrouver, rien à copier d'un
+       écran à l'autre. Un avis signalé, une réponse écrite, c'est fini — et Google met en
+       avant les commerces qui répondent.</p>
+
+    <h3>Modérer en deux touches</h3>
+    <p>Masquer un commentaire déplacé, le supprimer, bloquer quelqu'un d'insultant — sur
+       Facebook comme sur Instagram, sans ouvrir dix onglets.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Votre fiche Google</h2>
+  <div class="bloc fil">
+    <h3>Ce que cherchent vos clients</h3>
+    <p>La fiche Google est ce qui s'affiche quand quelqu'un cherche « près de moi ».
+       Pour un commerce de quartier, c'est souvent ce qui rapporte le plus — et c'est gratuit.</p>
+
+    <h3>Publications et galerie</h3>
+    <p>Vos actualités dans l'onglet dédié, vos vidéos dans la galerie — l'endroit le plus regardé
+       de la fiche. Frendo peut retirer automatiquement les anciennes après quelques jours,
+       pour que la meilleure ne soit pas enterrée sous quarante autres.</p>
+
+    <h3>Les fermetures exceptionnelles</h3>
+    <p>Un jour férié, une semaine de vacances, un inventaire : vous cochez les dates, la fiche
+       l'annonce. Vos horaires habituels ne sont jamais touchés.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Vérifier</h2>
+  <div class="bloc fil">
+    <h3>Frendo relit ses propres envois</h3>
+    <p>Dix minutes après chaque publication, il va vérifier ce qui est réellement en ligne
+       et vous le dit. Pas de surprise le lendemain.</p>
+
+    <h3>Le journal des échecs</h3>
+    <p>Quand un réseau refuse quelque chose, vous voyez le message exact qu'il a renvoyé,
+       au lieu d'un silence.</p>
+
+    <h3>Les connexions à rétablir</h3>
+    <p>Une autorisation expire toujours un jour. Un bandeau vous le signale avant que
+       vos publications commencent à tomber dans le vide.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">L'intelligence artificielle, avec mesure</h2>
+  <div class="bloc fil">
+    <h3>Corriger, pas inventer</h3>
+    <p>Le bouton « Améliorer le texte » corrige l'orthographe et resserre les phrases.
+       Il n'ajoute aucun produit, aucun prix, aucune promesse que vous n'avez pas écrits.
+       Sur la vitrine d'un commerce, un texte inventé est un risque, pas un service.</p>
+
+    <h3>Un assistant qui connaît l'application</h3>
+    <p>Une question à vingt et une heures un samedi ? Le bouton « Besoin d'aide ? » répond
+       tout de suite. Et quand il ne sait pas, il le dit au lieu de broder.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Plusieurs commerces</h2>
+  <p class="muted" style="font-size:14.5px;">
+    Deux magasins, un restaurant, une succursale : chacun garde ses pages, son historique
+    et ses statistiques. Jusqu'à quatre comptes par réseau sont compris dans le tarif de base —
+    quatre pages Facebook, quatre Instagram, quatre TikTok, et ainsi de suite.
+  </p>
+  <div class="reseaux">
+    <span class="puce">Facebook</span><span class="puce">Instagram</span><span class="puce">TikTok</span>
+    <span class="puce">YouTube</span><span class="puce">Threads</span><span class="puce">Bluesky</span>
+    <span class="puce">Fiche Google</span>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="serif">Ce que Frendo ne fait pas</h2>
+  <p class="muted" style="font-size:14.5px;">
+    Les statistiques restent volontairement simples : les outils d'agence vont beaucoup plus loin.
+    Il n'y a pas de travail à plusieurs ni de circuit de validation avant publication.
+    Pas de LinkedIn, pas de X, pas de Pinterest. Et les commentaires TikTok et YouTube,
+    comme les réponses Threads et Bluesky, se lisent encore dans l'application du réseau.
+  </p>
+  <p class="muted" style="font-size:14.5px;margin-top:14px;">
+    Frendo ne cherche pas à égaler les outils d'agence. Il fait ce qu'un commerçant fait
+    vraiment — une vidéo, cinq réseaux, la fiche Google tenue à jour — pour le prix
+    d'un seul canal ailleurs.
+  </p>
+  <p style="margin-top:26px;">
+    <a class="btn" href="mailto:contact@frendo.ch?subject=Pr%C3%A9venez-moi%20de%20l%27ouverture%20de%20Frendo">Être prévenu de l'ouverture</a>
+    &nbsp;
+    <a class="btn btn-clair" href="/">Retour à l'accueil</a>
+  </p>
+</div></section>
+
+<footer><div class="wrap">
+  <p><strong style="color:var(--ink);">Frendo</strong> — un service de FizzEat Sàrl, Rue de Fribourg 3, 1201 Genève, Suisse.</p>
+  <p style="margin-top:8px;">
+    <a href="/conditions.html">Conditions d'utilisation</a> ·
+    <a href="/confidentialite.html">Politique de confidentialité</a> ·
+    <a href="mailto:contact@frendo.ch">contact@frendo.ch</a>
+  </p>
+</div></footer>
+</body>
+</html>
