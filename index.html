@@ -57,6 +57,12 @@
   td{padding:9px 0;border-bottom:1px solid var(--border);}
   td:last-child{text-align:right;font-weight:600;white-space:nowrap;}
   tr:last-child td{border-bottom:none;}
+  /* La demonstration : le telephone est deja filme dans son cadre, on se
+     contente donc de l'encadrer sobrement et de reserver sa hauteur pour que
+     la page ne saute pas pendant le chargement. */
+  .demo{margin:26px auto 0;max-width:330px;}
+  .demo video{width:100%;height:auto;aspect-ratio:9/16;display:block;border-radius:18px;
+              border:1px solid var(--border);background:#000;}
   .reseaux{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
   .puce{border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:14px;color:var(--muted);}
   footer{padding:36px 0 56px;border-top:1px solid var(--border);margin-top:26px;font-size:13.5px;color:var(--muted);}
@@ -117,6 +123,20 @@
   <p class="muted" style="font-size:13.5px;margin-top:16px;">
     Conçu et développé à Genève · support en français, par la personne qui l'a écrit
   </p>
+</div></section>
+
+<section><div class="wrap" style="text-align:center;">
+  <h2 class="serif">Une publication, du début à la fin</h2>
+  <p class="muted" style="font-size:15px;max-width:520px;margin:0 auto;">
+    Une minute quinze, sans montage ni accélération : une photo, un texte, et onze comptes servis.
+  </p>
+  <div class="demo">
+    <video controls playsinline preload="none" poster="/media/demo-poster.jpg"
+           width="720" height="1280" aria-label="Démonstration de Frendo">
+      <source src="/media/demo.mp4" type="video/mp4">
+      Votre navigateur ne sait pas lire cette vidéo.
+    </video>
+  </div>
 </div></section>
 
 <section><div class="wrap">
