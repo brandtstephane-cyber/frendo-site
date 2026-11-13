@@ -15,7 +15,9 @@
   :root{
     --paper:#15171B; --ink:#E7E9ED; --muted:#8A9099; --border:#3A3F48;
     --surface:#1E2127; --title:#AAB1BB; --grid:rgba(255,255,255,.04);
-    --accent:#4ECDC4;
+    /* Le vert de Frendo, identique à celui de l'application et de l'accueil :
+       --menthe pour les traits, --menthe-vif pour le texte, qui doit rester lisible. */
+    --menthe:#17604F; --menthe-vif:#2E9C80; --accent:#2E9C80;
   }
   *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
   body{
@@ -35,10 +37,10 @@
   header nav{margin-left:auto;display:flex;gap:18px;font-size:14px;}
   header nav a{color:var(--muted);text-decoration:none;}
   header nav a:hover{color:var(--ink);}
-  .btn{display:inline-block;background:var(--ink);color:#15171B;padding:13px 26px;border-radius:999px;
+  .btn{display:inline-block;background:var(--menthe);color:#fff;padding:13px 26px;border-radius:999px;
        font-weight:600;font-size:15px;text-decoration:none;transition:transform .15s ease;}
   .btn:hover{transform:translateY(-1px);}
-  .btn-clair{background:transparent;color:var(--ink);border:1.5px solid var(--border);}
+  .btn-clair{background:transparent;color:var(--ink);border:1.5px solid var(--menthe);}
   h1{font-size:clamp(30px,6vw,46px);line-height:1.15;font-weight:600;letter-spacing:-.01em;}
   h2{font-size:clamp(21px,3.6vw,27px);font-weight:600;margin-bottom:14px;letter-spacing:-.005em;}
   h3{font-size:16px;font-weight:600;margin-bottom:5px;}
@@ -47,9 +49,9 @@
   section{padding:46px 0;border-top:1px solid var(--border);}
   section:first-of-type{border-top:none;}
   .grille{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin-top:26px;}
-  .carte{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;}
+  .carte{background:var(--surface);border:1.5px solid var(--menthe);border-radius:16px;padding:20px;}
   .carte p{font-size:14px;color:var(--muted);}
-  .prix{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px;text-align:center;}
+  .prix{background:var(--surface);border:1.5px solid var(--menthe);border-radius:20px;padding:30px;text-align:center;}
   .prix .gros{font-size:54px;font-weight:600;letter-spacing:-.02em;line-height:1;}
   .prix .gros span{font-size:19px;font-weight:500;color:var(--muted);}
   table{width:100%;border-collapse:collapse;margin-top:22px;font-size:14.5px;}
@@ -57,7 +59,7 @@
   td:last-child{text-align:right;font-weight:600;white-space:nowrap;}
   tr:last-child td{border-bottom:none;}
   .reseaux{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
-  .puce{border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:14px;color:var(--muted);}
+  .puce{border:1px solid var(--menthe);border-radius:999px;padding:7px 15px;font-size:14px;color:var(--muted);}
   footer{padding:36px 0 56px;border-top:1px solid var(--border);margin-top:26px;font-size:13.5px;color:var(--muted);}
   footer a{color:var(--muted);}
   .doc h2{margin-top:34px;}
@@ -69,7 +71,7 @@
   .bloc{margin-top:30px;}
   .bloc h3{font-size:15.5px;color:var(--ink);margin-top:20px;}
   .bloc p{font-size:14.5px;color:var(--muted);margin-top:4px;}
-  .fil{border-left:2px solid var(--border);padding-left:18px;}
+  .fil{border-left:2px solid var(--menthe);padding-left:18px;}
 </style>
 </head>
 <body>
