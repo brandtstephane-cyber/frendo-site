@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signaler une faille de sécurité — Frendo</title>
+<meta name="description" content="Comment signaler une faille de sécurité dans Frendo, et ce que nous nous engageons à faire ensuite.">
+<meta property="og:title" content="Signaler une faille de sécurité — Frendo">
+<meta property="og:description" content="Comment signaler une faille de sécurité dans Frendo, et ce que nous nous engageons à faire ensuite.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#15171B; --ink:#E7E9ED; --muted:#8A9099; --border:#3A3F48;
+    --surface:#1E2127; --title:#AAB1BB; --grid:rgba(255,255,255,.04);
+    /* Le vert de Frendo, identique à celui de l'application et des autres pages. */
+    --menthe:#17604F; --menthe-vif:#2E9C80; --accent:#2E9C80;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  body{
+    background:var(--paper);
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:26px 26px;background-position:-1px -1px;
+    color:var(--ink);min-height:100vh;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .serif{font-family:'Space Grotesk',Georgia,serif;letter-spacing:.01em;}
+  .wrap{width:100%;max-width:760px;margin:0 auto;padding:0 20px;}
+  .logo{width:104px;height:71px;background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDE2IDY5MCIgd2lkdGg9IjEwMTYiIGhlaWdodD0iNjkwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEZFOUNDIi8+PHN0b3Agb2Zmc2V0PSIwLjM1IiBzdG9wLWNvbG9yPSIjOEFFODk0Ii8+PHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjRDZENTY2Ii8+PHN0b3Agb2Zmc2V0PSIwLjc1IiBzdG9wLWNvbG9yPSIjRjlCRjUxIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRkU3QjQ0Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+Cgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNCwtMTU4KSI+PHJlY3QgeD0iNCIgICB5PSIzODQiIHdpZHRoPSIxNjUiIGhlaWdodD0iMjU4IiByeD0iNzQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iODU1IiB5PSIzODQiIHdpZHRoPSIxNjUiIGhlaWdodD0iMjU4IiByeD0iNzQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iOTAiICB5PSIxNTgiIHdpZHRoPSI4NDQiIGhlaWdodD0iNjkwIiByeD0iMjU1IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjE2MyIgeT0iMjQzIiB3aWR0aD0iNjk2IiBoZWlnaHQ9IjUxNiIgcng9IjE3NSIgZmlsbD0iIzAyMUM0MCIvPgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iNDQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CjxwYXRoIGQ9Ik0gMjQ2IDQ5NyBBIDk1IDgyIDAgMCAxIDQyNCA0OTciLz4KPHBhdGggZD0iTSA2MDAgNDk3IEEgOTUgODIgMCAwIDEgNzc4IDQ5NyIvPgo8cGF0aCBkPSJNIDM5MiA1OTIgQSAxMzIgMTAwIDAgMCAwIDYzMiA1OTIiLz4KPC9nPjwvZz4KPC9zdmc+Cg==");background-size:contain;background-repeat:no-repeat;background-position:center;}
+  a{color:var(--ink);}
+  header{padding:26px 0;}
+  header .wrap{display:flex;align-items:center;gap:14px;}
+  header .nom{font-size:21px;font-weight:600;color:var(--ink);}
+  header nav{margin-left:auto;display:flex;gap:18px;font-size:14px;}
+  header nav a{color:var(--muted);text-decoration:none;}
+  header nav a:hover{color:var(--ink);}
+  .btn{display:inline-block;background:var(--menthe);color:#fff;padding:13px 26px;border-radius:999px;
+       font-weight:600;font-size:15px;text-decoration:none;transition:transform .15s ease;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-clair{background:transparent;color:var(--ink);border:1.5px solid var(--menthe);}
+  h1{font-size:clamp(30px,6vw,46px);line-height:1.15;font-weight:600;letter-spacing:-.01em;}
+  h2{font-size:clamp(21px,3.6vw,27px);font-weight:600;margin-bottom:14px;letter-spacing:-.005em;}
+  h3{font-size:16px;font-weight:600;margin-bottom:5px;}
+  p{color:var(--ink);}
+  .muted{color:var(--muted);}
+  section{padding:46px 0;border-top:1px solid var(--border);}
+  section:first-of-type{border-top:none;}
+  .grille{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin-top:26px;}
+  .carte{background:var(--surface);border:1.5px solid var(--menthe);border-radius:16px;padding:20px;}
+  .carte p{font-size:14px;color:var(--muted);}
+  .prix{background:var(--surface);border:1.5px solid var(--menthe);border-radius:20px;padding:30px;text-align:center;}
+  .prix .gros{font-size:54px;font-weight:600;letter-spacing:-.02em;line-height:1;}
+  .prix .gros span{font-size:19px;font-weight:500;color:var(--muted);}
+  table{width:100%;border-collapse:collapse;margin-top:22px;font-size:14.5px;}
+  td{padding:9px 0;border-bottom:1px solid var(--border);}
+  td:last-child{text-align:right;font-weight:600;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  .reseaux{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
+  .puce{border:1px solid var(--menthe);border-radius:999px;padding:7px 15px;font-size:14px;color:var(--muted);}
+  footer{padding:36px 0 56px;border-top:1px solid var(--border);margin-top:26px;font-size:13.5px;color:var(--muted);}
+  footer a{color:var(--muted);}
+  .doc h2{margin-top:34px;}
+  .doc h2:first-of-type{margin-top:0;}
+  .doc p,.doc li{font-size:15px;color:var(--ink);margin-bottom:12px;}
+  .doc ul{padding-left:20px;}
+  .doc .maj{font-size:13.5px;color:var(--muted);margin-bottom:28px;}
+  @media (max-width:520px){ header .wrap{flex-wrap:wrap;} header nav{margin-left:0;width:100%;gap:14px;font-size:13px;padding-top:4px;} }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="logo"></div>
+  <div class="nom serif">Frendo</div>
+  <nav>
+    <a href="/">Accueil</a>
+    <a href="/fonctions.html">Fonctions</a>
+    <a href="/conditions.html">Conditions</a>
+    <a href="/confidentialite.html">Confidentialité</a>
+  </nav>
+</div></header>
+
+<section><div class="wrap doc">
+  <h1 class="serif" style="font-size:32px;margin-bottom:8px;">Signaler une faille de sécurité</h1>
+  <p class="maj">Dernière mise à jour : 15 novembre 2026</p>
+
+  <p>Si vous avez découvert un défaut de sécurité dans Frendo, écrivez-nous à
+     <a href="mailto:contact@frendo.ch?subject=Faille%20de%20s%C3%A9curit%C3%A9">contact@frendo.ch</a>,
+     avec « faille de sécurité » en objet. Vous pouvez écrire en français, en anglais ou en allemand.</p>
+
+  <h2 class="serif">Ce qui nous aide</h2>
+  <ul>
+    <li>L'adresse de la page ou de l'appel concerné.</li>
+    <li>Les étapes pour reproduire le problème.</li>
+    <li>Ce que la faille permet de faire, et une copie d'écran si vous en avez une.</li>
+  </ul>
+
+  <h2 class="serif">Ce que nous nous engageons à faire</h2>
+  <ul>
+    <li>Accuser réception sous trois jours ouvrables.</li>
+    <li>Vous dire ce que nous avons compris et ce que nous comptons corriger.</li>
+    <li>Vous prévenir quand c'est corrigé, et vous citer si vous le souhaitez.</li>
+  </ul>
+
+  <h2 class="serif">Ce que nous vous demandons</h2>
+  <p>Ne publiez rien avant que la faille soit corrigée. N'accédez pas aux données d'autres
+     commerces, ne les modifiez pas, ne les conservez pas : si vous tombez dessus en cherchant,
+     arrêtez-vous là et dites-le-nous. Pas de test de surcharge, pas d'hameçonnage de nos clients.</p>
+  <p>Une recherche menée dans ces limites et signalée de bonne foi ne donnera lieu à aucune
+     poursuite de notre part.</p>
+
+  <h2 class="serif">Ce que nous ne traitons pas</h2>
+  <p>Les rapports produits par un scanner automatique sans démonstration concrète, les défauts
+     de configuration sans conséquence (en-têtes manquants, versions affichées) et les problèmes
+     qui relèvent d'un service tiers que nous utilisons mais ne contrôlons pas.</p>
+
+  <h2 class="serif">Récompense</h2>
+  <p>Frendo est un petit service suisse : nous n'avons pas de programme de prime. Nous offrons
+     notre reconnaissance, une mention sur cette page si vous la voulez, et un abonnement offert
+     pour toute faille sérieuse que vous nous auriez évitée.</p>
+</div></section>
+
+<footer><div class="wrap">
+  <p><strong style="color:var(--ink);">Frendo</strong> — un service de FizzEat Sàrl, Rue de Fribourg 3, 1201 Genève, Suisse.</p>
+  <p style="margin-top:8px;">
+    <a href="/conditions.html">Conditions d'utilisation</a> ·
+    <a href="/confidentialite.html">Politique de confidentialité</a> ·
+    <a href="/securite.html">Signaler une faille</a> ·
+    <a href="mailto:contact@frendo.ch">contact@frendo.ch</a>
+  </p>
+</div></footer>
+</body>
+</html>
